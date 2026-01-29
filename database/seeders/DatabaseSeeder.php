@@ -34,12 +34,12 @@ class DatabaseSeeder extends Seeder
         $companies->each(function (Company $company) {
             $admin = User::factory()
                 ->state([
-                    'email' => 'admin@company' . $company->id . '.test'
+                    'email' => 'admin@company'.$company->id.'.test',
                 ])
                 ->has(
                     UserProfile::factory()->state([
                         'company_id' => $company->id,
-                        'role' => 'admin'
+                        'role' => 'admin',
                     ])
                 )
                 ->create();
@@ -47,13 +47,13 @@ class DatabaseSeeder extends Seeder
             $managers = User::factory()
                 ->count(2)
                 ->sequence(
-                    ['email' => 'manager1@company' . $company->id . '.test'],
-                    ['email' => 'manager2@company' . $company->id . '.test']
+                    ['email' => 'manager1@company'.$company->id.'.test'],
+                    ['email' => 'manager2@company'.$company->id.'.test']
                 )
                 ->has(
                     UserProfile::factory()->state([
                         'company_id' => $company->id,
-                        'role' => 'manager'
+                        'role' => 'manager',
                     ])
                 )
                 ->create();
@@ -61,13 +61,13 @@ class DatabaseSeeder extends Seeder
             $employees = User::factory()
                 ->count(2)
                 ->sequence(
-                    ['email' => 'employee1@company' . $company->id . '.test'],
-                    ['email' => 'employee2@company' . $company->id . '.test']
+                    ['email' => 'employee1@company'.$company->id.'.test'],
+                    ['email' => 'employee2@company'.$company->id.'.test']
                 )
                 ->has(
                     UserProfile::factory()->state([
                         'company_id' => $company->id,
-                        'role' => 'employee'
+                        'role' => 'employee',
                     ])
                 )
                 ->create();

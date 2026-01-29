@@ -17,7 +17,7 @@ class TicketDetailFactory extends Factory
     public function definition(): array
     {
         $generateJson = (rand(0, 1) === 1);
-        if($generateJson) {
+        if ($generateJson) {
             $details = [
                 'type' => 'json',
                 'content' => [
