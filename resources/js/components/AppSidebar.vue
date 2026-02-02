@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import { ClipboardList, FolderGit2, FolderKanban, LayoutGrid, Users } from 'lucide-vue-next';
+import {
+    ClipboardList,
+    FolderGit2,
+    FolderKanban,
+    LayoutGrid,
+    Users,
+} from 'lucide-vue-next';
 import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
 import NavUser from '@/components/NavUser.vue';
@@ -13,13 +19,13 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
+import { type NavItem } from '@/types';
+import AppLogo from './AppLogo.vue';
+import NotificationsMenu from './NotificationsMenu.vue';
 import { dashboard } from '@/routes';
 import { index as projectsIndex } from '@/routes/projects';
 import { index as teamIndex } from '@/routes/team';
 import { index as ticketsIndex } from '@/routes/tickets';
-import { type NavItem } from '@/types';
-import AppLogo from './AppLogo.vue';
-import NotificationsMenu from './NotificationsMenu.vue';
 
 const mainNavItems: NavItem[] = [
     {
@@ -41,7 +47,7 @@ const mainNavItems: NavItem[] = [
         title: 'Team',
         href: teamIndex(),
         icon: Users,
-    }
+    },
 ];
 
 const footerNavItems: NavItem[] = [

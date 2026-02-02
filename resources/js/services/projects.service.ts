@@ -1,7 +1,7 @@
 import type { LaravelPagination } from '@/types';
 import type { Project } from '@/types/project';
 import type { Ticket } from '@/types/ticket';
-import http from './http'
+import http from './http';
 
 export async function getProjects(): Promise<Project[]> {
     const { data } = await http.get<Project[]>('/projects');

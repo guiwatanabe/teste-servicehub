@@ -1,5 +1,5 @@
-import type { User } from "./auth";
-import type { Project } from "./project";
+import type { User } from './auth';
+import type { Project } from './project';
 
 export type TicketDetailContentText = {
     type: 'text';

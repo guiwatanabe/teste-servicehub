@@ -1,5 +1,5 @@
-import type { Company } from "./company";
-import type { Ticket } from "./ticket";
+import type { Company } from './company';
+import type { Ticket } from './ticket';
 
 export type Project = {
     id: number;
