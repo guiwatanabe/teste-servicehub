@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-vue-next';
+import { ClipboardList, FolderGit2, FolderKanban, LayoutGrid, Users } from 'lucide-vue-next';
 import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
 import NavUser from '@/components/NavUser.vue';
@@ -13,9 +13,13 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
+import { dashboard } from '@/routes';
+import { index as projectsIndex } from '@/routes/projects';
+import { index as teamIndex } from '@/routes/team';
+import { index as ticketsIndex } from '@/routes/tickets';
 import { type NavItem } from '@/types';
 import AppLogo from './AppLogo.vue';
-import { dashboard } from '@/routes';
+import NotificationsMenu from './NotificationsMenu.vue';
 
 const mainNavItems: NavItem[] = [
     {
@@ -23,18 +27,28 @@ const mainNavItems: NavItem[] = [
         href: dashboard(),
         icon: LayoutGrid,
     },
+    {
+        title: 'Tickets',
+        href: ticketsIndex(),
+        icon: FolderKanban,
+    },
+    {
+        title: 'Projects',
+        href: projectsIndex(),
+        icon: ClipboardList,
+    },
+    {
+        title: 'Team',
+        href: teamIndex(),
+        icon: Users,
+    }
 ];
 
 const footerNavItems: NavItem[] = [
     {
-        title: 'Github Repo',
-        href: 'https://github.com/laravel/vue-starter-kit',
-        icon: Folder,
-    },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#vue',
-        icon: BookOpen,
+        title: 'Github',
+        href: 'https://github.com/guiwatanabe/teste-servicehub',
+        icon: FolderGit2,
     },
 ];
 </script>
@@ -50,6 +64,8 @@ const footerNavItems: NavItem[] = [
                         </Link>
                     </SidebarMenuButton>
                 </SidebarMenuItem>
+
+                <NotificationsMenu />
             </SidebarMenu>
         </SidebarHeader>
 

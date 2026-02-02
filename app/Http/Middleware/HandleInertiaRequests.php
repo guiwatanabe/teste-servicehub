@@ -35,13 +35,23 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        /** @var \App\Models\User|null $user */
+        $user = $request->user();
+
+        /** @var \App\Models\UserProfile|null $userProfile */
+        $userProfile = $user ? $user->userProfile : null;
+
         return [
             ...parent::share($request),
             'name' => config('app.name'),
             'auth' => [
-                'user' => $request->user(),
+                'user' => $user,
+                'role' => $userProfile ? $userProfile->role : 'employee',
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
+            'notifications' => $user
+                ? $user->unreadNotifications()->latest()->take(5)->get()
+                : [],
         ];
     }
 }
