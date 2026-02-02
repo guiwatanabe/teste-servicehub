@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -23,6 +25,10 @@ class Project extends Model
         'company_id',
     ];
 
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d',
+    ];
+
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
@@ -31,5 +37,11 @@ class Project extends Model
     public function tickets(): HasMany
     {
         return $this->hasMany(Ticket::class);
+    }
+
+    #[Scope]
+    protected function withCompany(Builder $query, int $companyId): void
+    {
+        $query->where('company_id', $companyId);
     }
 }

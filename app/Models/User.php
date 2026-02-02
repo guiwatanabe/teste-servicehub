@@ -11,11 +11,12 @@ use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, TwoFactorAuthenticatable;
+    use HasApiTokens, HasFactory, Notifiable, TwoFactorAuthenticatable;
 
     /**
      * The attributes that are mass assignable.
@@ -66,17 +67,26 @@ class User extends Authenticatable
 
     public function isAdmin(): bool
     {
-        return $this->userProfile->role === 'admin';
+        /** @var UserProfile $profile */
+        $profile = $this->userProfile;
+
+        return $profile->role === 'admin';
     }
 
     public function isManager(): bool
     {
-        return $this->userProfile->role === 'manager';
+        /** @var UserProfile $profile */
+        $profile = $this->userProfile;
+
+        return $profile->role === 'manager';
     }
 
     public function isEmployee(): bool
     {
-        return $this->userProfile->role === 'employee';
+        /** @var UserProfile $profile */
+        $profile = $this->userProfile;
+
+        return $profile->role === 'employee';
     }
 
     public function createdTickets(): HasMany

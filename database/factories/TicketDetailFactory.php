@@ -28,18 +28,16 @@ class TicketDetailFactory extends Factory
                     ],
                 ],
             ];
-            $detailsJson = json_encode($details, JSON_PRETTY_PRINT);
         } else {
             $details = [
                 'type' => 'text',
                 'content' => $this->faker->paragraph(),
             ];
-            $detailsJson = json_encode($details, JSON_PRETTY_PRINT);
         }
 
         return [
             'ticket_id' => \App\Models\Ticket::factory(),
-            'details' => $detailsJson,
+            'details' => $details,
         ];
     }
 }

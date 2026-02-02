@@ -21,6 +21,10 @@ class TicketDetail extends Model
         'details',
     ];
 
+    protected $casts = [
+        'details' => 'array',
+    ];
+
     public function ticket(): BelongsTo
     {
         return $this->belongsTo(Ticket::class);
