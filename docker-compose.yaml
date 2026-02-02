@@ -12,6 +12,7 @@ services:
     tty: true
     volumes:
       - ./:/var/www/app
+      - node_modules:/var/www/app/node_modules
     ports:
       - "8000:8000"
     depends_on: 
@@ -50,6 +51,7 @@ services:
     tty: true
     volumes:
       - ./:/var/www/app
+      - node_modules:/var/www/app/node_modules
     ports:
       - "5173:5173"
     command:
@@ -68,10 +70,9 @@ services:
     environment:
       MYSQL_DATABASE: "${DB_DATABASE:-laravel}"
       MYSQL_USER: "${DB_USERNAME:-laravel}"
-      MYSQL_PASSWORD: "${DB_PASSWORD}"
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
       MYSQL_ROOT_HOST: "%"
-      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
     networks:
       - laravel
     healthcheck:
@@ -81,3 +82,4 @@ services:
 
 volumes:
   mysql-data:
+  node_modules:

@@ -30,6 +30,12 @@ RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash - \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Copy package files
+COPY package.json package-lock.json ./
+
+# Install npm dependencies
+RUN npm ci
+
 # Entrypoint script
 COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
